@@ -13,14 +13,14 @@ resources:
         # Specifies which branches will trigger dependent steps
         include: master
 
-  - name: myPropertyBag
+  - name: dannyPropertyBag
     type: PropertyBag
     configuration:
       commitSha: 1
       runID: 1
 
 pipelines:
-  - name: my_first_pipeline
+  - name: danny_first_pipeline
     steps:
       - name: p1_s1
         type: Bash
@@ -41,7 +41,7 @@ pipelines:
             # Pipeline state documentation: https://www.jfrog.com/confluence/display/JFROG/Creating+Stateful+Pipelines#CreatingStatefulPipelines-PipelineState
             - echo "Previous run ID is $prev_runid"
 
-      - name: p1_s2
+      - name: dp1_s2
         type: Bash
         configuration:
           inputSteps:
@@ -51,7 +51,7 @@ pipelines:
             # Demonstrates the availability of an env variable written to run state during p1_s1
             - echo $current_runid
 
-      - name: p1_s3
+      - name: dp1_s3
         type: Bash
         configuration:
           inputSteps:
@@ -68,7 +68,7 @@ pipelines:
             # Utility functions documentation: https://www.jfrog.com/confluence/display/JFROG/Pipelines+Utility+Functions
             - write_output myPropertyBag commitSha=$commitSha runID=$current_runid
 
-  - name: my_second_pipeline
+  - name: danny_second_pipeline
     steps:
       - name: p2_s1
         type: Bash
